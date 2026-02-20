@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public class PumpControl : MonoBehaviour
 {
@@ -8,9 +9,8 @@ public class PumpControl : MonoBehaviour
     public GameObject pumpSelected;
     public GameObject pumpImpellerIcon;
 
-    //public AudioSource audioSource;
-    //public AudioClip pumpOnWarningSound;
-    //public AudioClip pumpOffWarningSound;
+    public AudioSource pumpOnWarningSound;
+    public AudioSource pumpOffWarningSound;
 
     private bool isPumpOn = false;
 
@@ -52,7 +52,21 @@ public class PumpControl : MonoBehaviour
 
     [Header("Other Graphical Assets")]
     public GameObject manualPressureControlText;
+    public GameObject autoPressureControlText;
     public GameObject greenLpIcon;
+    public GameObject greenHpIcon;
+
+    [Header("High Pressure Gauge")]
+    public TextMeshProUGUI highPressureText;
+    private int highPressureTarget = 0;
+    private Coroutine highPressureCoroutine;
+
+    [Header("HP Gauge Visuals")]
+    public GameObject hpGaugeBlue;
+    public GameObject hpGaugeGreen;
+
+    private int currentHighPressure = 0;
+    private bool hpLocked = false;
 
 
     public void TogglePump()
@@ -65,8 +79,18 @@ public class PumpControl : MonoBehaviour
             pumpSelected.SetActive(true);
             pumpImpellerIcon.SetActive(true);
             manualPressureControlText.SetActive(false);
+            autoPressureControlText.SetActive(true);
 
-            //audioSource.PlayOneShot(pumpOnWarningSound);
+            pumpOnWarningSound.Play();
+
+            highPressureTarget = 3;
+
+            if (highPressureCoroutine != null)
+            {
+                StopCoroutine(highPressureCoroutine);
+            }
+            highPressureCoroutine = StartCoroutine(HighPressureFlicker());
+
         }
         else
         {
@@ -74,21 +98,54 @@ public class PumpControl : MonoBehaviour
             pumpSelected.SetActive(false);
             pumpImpellerIcon.SetActive(false);
             greenLpIcon.SetActive(false);
+            greenHpIcon.SetActive(false);
+            hpGaugeBlue.SetActive(true);
+            hpGaugeGreen.SetActive(false);
 
-           //audioSource.PlayOneShot(pumpOffWarningSound);
+            //Other Pressures Deactivate
+
+            // 4 Bar
+            fourBarLPNormal.SetActive(true);
+            fourBarLPSelected.SetActive(false);
+
+            // 7 bar
+            sevenBarLPNormal.SetActive(true);
+            sevenBarLPSelected.SetActive(false);
+
+            // 28 bar
+            twentyEightBarLPNormal.SetActive(true);
+            twentyEightBarLPSelected.SetActive(false);
+
+            pumpOffWarningSound.Play();
+
+            if (highPressureCoroutine != null)
+                StopCoroutine(highPressureCoroutine);
+
+            StopAllCoroutines();
+
+            currentHighPressure = 3;
+
+            hpLocked = false;
+            hpGaugeBlue.SetActive(true);
+            hpGaugeGreen.SetActive(false);
+
+            highPressureText.text = "0";
+
         }
     }
 
     public void ToggleFourBarPressure()
     {
-        isFourBarOn= !isFourBarOn;
+        isFourBarOn = !isFourBarOn;
 
         if (isFourBarOn)
         {
             fourBarLPNormal.SetActive(false);
             fourBarLPSelected.SetActive(true);
             manualPressureControlText.SetActive(false);
+            autoPressureControlText.SetActive(true);
             greenLpIcon.SetActive(true);
+            greenHpIcon.SetActive(false);
 
             //Other Pressures Deactivate
 
@@ -110,13 +167,16 @@ public class PumpControl : MonoBehaviour
 
     public void ToggleSevenBarPressure()
     {
-        isSevenBarOn= !isSevenBarOn;
+        isSevenBarOn = !isSevenBarOn;
 
         if (isSevenBarOn)
         {
             sevenBarLPNormal.SetActive(false);
             sevenBarLPSelected.SetActive(true);
             manualPressureControlText.SetActive(false);
+            autoPressureControlText.SetActive(true);
+            greenLpIcon.SetActive(true);
+            greenHpIcon.SetActive(false);
 
             //Other Pressures Deactivate
 
@@ -137,29 +197,23 @@ public class PumpControl : MonoBehaviour
 
     public void ToggleTwentyEightBarPressure()
     {
+        if (!isPumpOn) return;
+
         isTwentyEightBarOn = !isTwentyEightBarOn;
 
         if (isTwentyEightBarOn)
         {
             twentyEightBarLPNormal.SetActive(false);
             twentyEightBarLPSelected.SetActive(true);
-            manualPressureControlText.SetActive(false);
             greenLpIcon.SetActive(false);
-
-            //Other Pressures Deactivate
-
-            // 4 bar
-            fourBarLPNormal.SetActive(true);
-            fourBarLPSelected.SetActive(false);
-
-            // 7 bar
-            sevenBarLPNormal.SetActive(true);
-            sevenBarLPSelected.SetActive(false);
+            greenHpIcon.SetActive(true);
+            StartCoroutine(RampPressure(28));
         }
         else
         {
             twentyEightBarLPNormal.SetActive(true);
             twentyEightBarLPSelected.SetActive(false);
+            StartCoroutine(RampPressure(3));
         }
     }
 
@@ -168,7 +222,9 @@ public class PumpControl : MonoBehaviour
         RpmUpNormal.SetActive(false);
         RpmUpSelected.SetActive(true);
         manualPressureControlText.SetActive(true);
+        autoPressureControlText.SetActive(false);
         greenLpIcon.SetActive(false);
+        greenHpIcon.SetActive(false);
 
         //Other Pressures Deactivate
 
@@ -197,7 +253,9 @@ public class PumpControl : MonoBehaviour
         RpmDownNormal.SetActive(false);
         RpmDownSelected.SetActive(true);
         manualPressureControlText.SetActive(true);
+        autoPressureControlText.SetActive(false);
         greenLpIcon.SetActive(false);
+        greenHpIcon.SetActive(false);
 
         //Other Pressures Deactivate
 
@@ -226,7 +284,9 @@ public class PumpControl : MonoBehaviour
         RpmIdleNormal.SetActive(false);
         RpmIdleSelected.SetActive(true);
         manualPressureControlText.SetActive(true);
+        autoPressureControlText.SetActive(false);
         greenLpIcon.SetActive(false);
+        greenHpIcon.SetActive(false);
 
         //Other Pressures Deactivate
 
@@ -267,4 +327,62 @@ public class PumpControl : MonoBehaviour
             httSelected.SetActive(false);
         }
     }
+
+    IEnumerator RampPressure(int target)
+    {
+        hpLocked = false;
+
+        while (currentHighPressure != target)
+        {
+            if (currentHighPressure < target)
+                currentHighPressure++;
+            else
+                currentHighPressure--;
+
+            yield return new WaitForSeconds(0.08f);
+        }
+    }
+
+    IEnumerator HighPressureFlicker()
+    {
+        yield return null;
+
+        while (true)
+        {
+            int minValue = (currentHighPressure <= 3) ? 2 : currentHighPressure - 1;
+            int maxValue = (currentHighPressure <= 3) ? 4 : currentHighPressure + 1;
+
+            int flickerValue = Random.Range(minValue, maxValue + 1);
+
+            highPressureText.text = flickerValue.ToString();
+
+            if (!hpLocked && currentHighPressure == 28)
+            {
+                hpLocked = true;
+            }
+
+            if (hpLocked)
+            {
+                if (flickerValue < 27 || flickerValue > 29)
+                {
+                    hpLocked = false;
+                }
+            }
+
+            if (hpLocked)
+            {
+                hpGaugeBlue.SetActive(false);
+                hpGaugeGreen.SetActive(true);
+            }
+            else
+            {
+                hpGaugeBlue.SetActive(true);
+                hpGaugeGreen.SetActive(false);
+            }
+
+            yield return new WaitForSeconds(Random.Range(0.05f, 0.35f));
+        }
+    }
+
+
 }
