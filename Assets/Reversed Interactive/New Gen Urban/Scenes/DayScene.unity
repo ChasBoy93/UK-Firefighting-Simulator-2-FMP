@@ -10168,23 +10168,18 @@ MonoBehaviour:
   fourBarLPSelected: {fileID: 2112302933}
   sevenBarLPNormal: {fileID: 89999117}
   sevenBarLPSelected: {fileID: 1067105644}
-  twentyEightBarLPNormal: {fileID: 906249197}
-  twentyEightBarLPSelected: {fileID: 1180139872}
-  RpmUpNormal: {fileID: 1953630285}
-  RpmUpSelected: {fileID: 461354086}
-  RpmDownNormal: {fileID: 1805419686}
-  RpmDownSelected: {fileID: 779497704}
-  RpmIdleNormal: {fileID: 1077275358}
-  RpmIdleSelected: {fileID: 438711450}
-  httNormal: {fileID: 405942371}
-  httSelected: {fileID: 1631243251}
-  manualPressureControlText: {fileID: 1976042145}
-  autoPressureControlText: {fileID: 507363430}
-  greenLpIcon: {fileID: 1695149689}
-  greenHpIcon: {fileID: 1531647954}
+  twentyEightBarNormal: {fileID: 906249197}
+  twentyEightBarSelected: {fileID: 1180139872}
   highPressureText: {fileID: 1817819918}
+  lowPressureText: {fileID: 1343405309}
   hpGaugeBlue: {fileID: 1547858334}
   hpGaugeGreen: {fileID: 2082050772}
+  lpGaugeBlue: {fileID: 141907472}
+  lpGaugeGreen: {fileID: 1537315363}
+  hpGreenIcon: {fileID: 1531647954}
+  lpGreenIcon: {fileID: 1695149689}
+  autoPressureModeText: {fileID: 507363430}
+  manualPressureModeText: {fileID: 1976042145}
 --- !u!1 &331137679
 GameObject:
   m_ObjectHideFlags: 0
@@ -41598,7 +41593,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 328276627}
         m_TargetAssemblyTypeName: PumpControl, Assembly-CSharp
-        m_MethodName: RpmIdle
+        m_MethodName: DeselectAllPressures
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -42612,8 +42607,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 106.4, y: 122.1}
-  m_SizeDelta: {x: 74.5439, y: 54.5412}
+  m_AnchoredPosition: {x: 109.7, y: 122.1}
+  m_SizeDelta: {x: 105.7402, y: 54.5412}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1343405309
 MonoBehaviour:
@@ -42701,7 +42696,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -6.693104, w: 0}
+  m_margin: {x: 0, y: 0, z: -0.25894165, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
