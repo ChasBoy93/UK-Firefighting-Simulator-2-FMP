@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: a73254c349423494687515cf7af557b2
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 210349
+  packageName: Fire Department - Modular pack
+  packageVersion: 1.0
+  assetPath: Assets/FireStation/Scripts/CameraLook.cs
+  uploadId: 472768
