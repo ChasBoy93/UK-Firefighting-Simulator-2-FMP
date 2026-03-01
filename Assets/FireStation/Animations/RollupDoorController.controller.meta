@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7dbd97c2040a24e8ba7a774f81aad076
+timeCreated: 1429286847
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 210349
+  packageName: Fire Department - Modular pack
+  packageVersion: 1.0
+  assetPath: Assets/FireStation/Animations/RollupDoorController.controller
+  uploadId: 472768

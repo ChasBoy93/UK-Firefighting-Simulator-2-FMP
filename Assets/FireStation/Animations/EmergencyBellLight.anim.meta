@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 70de180be8f338f4c8d04087b538f157
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 210349
+  packageName: Fire Department - Modular pack
+  packageVersion: 1.0
+  assetPath: Assets/FireStation/Animations/EmergencyBellLight.anim
+  uploadId: 472768

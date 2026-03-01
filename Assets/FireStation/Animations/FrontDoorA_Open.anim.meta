@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f608ea4d60b1d13488f598901b440343
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 210349
+  packageName: Fire Department - Modular pack
+  packageVersion: 1.0
+  assetPath: Assets/FireStation/Animations/FrontDoorA_Open.anim
+  uploadId: 472768
