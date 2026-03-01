@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 9279dc9c792ee1e4a99f6dc1c23928b1
+timeCreated: 1589888652
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 210349
+  packageName: Fire Department - Modular pack
+  packageVersion: 1.0
+  assetPath: Assets/FireStation/Prefabs/RollupDoor.prefab
+  uploadId: 472768

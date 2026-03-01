@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3572aee44ca082c41aacaa43aae3eb35
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 210349
+  packageName: Fire Department - Modular pack
+  packageVersion: 1.0
+  assetPath: Assets/FireStation/Prefabs/FireExtinguisher.prefab
+  uploadId: 472768

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 055aa771b7bb8904da5505516542d7f8
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 210349
+  packageName: Fire Department - Modular pack
+  packageVersion: 1.0
+  assetPath: Assets/FireStation/Prefabs/EmergencyBell.prefab
+  uploadId: 472768

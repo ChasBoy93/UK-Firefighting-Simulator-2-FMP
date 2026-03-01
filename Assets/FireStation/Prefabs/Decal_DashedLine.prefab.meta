@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 2169e3f0846a20e45b110a45d43503ca
+timeCreated: 1553446718
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 210349
+  packageName: Fire Department - Modular pack
+  packageVersion: 1.0
+  assetPath: Assets/FireStation/Prefabs/Decal_DashedLine.prefab
+  uploadId: 472768
