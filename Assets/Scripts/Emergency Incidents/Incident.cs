@@ -12,12 +12,18 @@ public class Incident : MonoBehaviour
         manager = m;
 
         foreach (GameObject obj in incidentObjects)
+        {
             obj.SetActive(true);
+        }
+
     }
 
     public void EndIncident()
     {
         foreach (GameObject obj in incidentObjects)
+        {
             obj.SetActive(false);
+        }
+
     }
 }

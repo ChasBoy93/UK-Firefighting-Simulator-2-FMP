@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.Rendering.VolumeComponent;
+using UnityEngine.InputSystem;
 
 public class CallManager : MonoBehaviour
 {
@@ -12,6 +12,11 @@ public class CallManager : MonoBehaviour
 
     public List<GameObject> lightTowers;
 
+    public List<GameObject> stationLights;
+
+    public Material emissionMaterial;
+    public Texture emissionTexture;
+
     public float minCallTime = 60f;
     public float maxCallTime = 180f;
 
@@ -19,11 +24,21 @@ public class CallManager : MonoBehaviour
 
     bool stationAvailable = true;
 
+    public GameObject IcAlarmLightAnim;
+
     Incident activeIncident;
 
     void Start()
     {
         StartCoroutine(CallRoutine());
+    }
+
+    void Update()
+    {
+        if (Keyboard.current.uKey.wasPressedThisFrame)
+        {
+            AcknowledgeCall();
+        }
     }
 
     IEnumerator CallRoutine()
@@ -52,13 +67,30 @@ public class CallManager : MonoBehaviour
         stationAvailable = false;
 
         foreach (AudioSource alarm in stationAlarms)
+        {
             alarm.Play();
+        }
+
 
         foreach (AudioSource alarm in applianceAlarms)
+        {
             alarm.Play();
+        }
+
 
         foreach (GameObject tower in lightTowers)
+        {
             tower.SetActive(true);
+        }
+
+        foreach (GameObject stnlights in stationLights)
+        {
+            stnlights.SetActive(true);
+        }
+
+        IcAlarmLightAnim.SetActive(true);
+
+        SetEmission(true);
 
         StartCoroutine(LightTowerTimer());
     }
@@ -68,13 +100,29 @@ public class CallManager : MonoBehaviour
         yield return new WaitForSeconds(lightTowerTime);
 
         foreach (GameObject tower in lightTowers)
+        {
             tower.SetActive(false);
+        }
+
+        foreach (GameObject stnlights in stationLights)
+        {
+            stnlights.SetActive(false);
+        }
+
+        SetEmission(false);
     }
 
     public void AcknowledgeCall()
     {
+
         foreach (AudioSource alarm in applianceAlarms)
+        {
             alarm.Stop();
+        }
+
+        IcAlarmLightAnim.SetActive(false);
+
+
     }
 
     public void ReturnToStation()
@@ -83,5 +131,19 @@ public class CallManager : MonoBehaviour
             activeIncident.EndIncident();
 
         stationAvailable = true;
+    }
+
+    void SetEmission(bool state)
+    {
+        if (state)
+        {
+            emissionMaterial.EnableKeyword("_EMISSION");
+            emissionMaterial.SetTexture("_EmissionMap", emissionTexture);
+        }
+        else
+        {
+            emissionMaterial.DisableKeyword("_EMISSION");
+            emissionMaterial.SetTexture("_EmissionMap", null);
+        }
     }
 }
