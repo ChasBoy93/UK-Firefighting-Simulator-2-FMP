@@ -33,7 +33,7 @@ public class TruckController : MonoBehaviour
 
     private Rigidbody truckRb;
 
-    void Start()
+    void Awake()
     {
         truckRb = GetComponent<Rigidbody>();
         truckRb.centerOfMass = _centerOfMass;
@@ -59,7 +59,7 @@ public class TruckController : MonoBehaviour
 
     void Move()
     {
-        foreach(var wheel in wheels)
+        foreach (var wheel in wheels)
         {
             wheel.wheelCollider.motorTorque = moveInput * 1500 * maxAcceleration * Time.deltaTime;
         }
@@ -67,7 +67,7 @@ public class TruckController : MonoBehaviour
 
     void Steer()
     {
-        foreach(var wheel in wheels)
+        foreach (var wheel in wheels)
         {
             if (wheel.axel == Axel.Front)
             {
@@ -81,28 +81,24 @@ public class TruckController : MonoBehaviour
     {
         float speed = truckRb.linearVelocity.magnitude;
 
-        // If pressing reverse while still moving forward -> brake
-        if (moveInput < 0 && speed > 1f)
+        foreach (var wheel in wheels)
         {
-            foreach (var wheel in wheels)
-            {
-                wheel.wheelCollider.brakeTorque = brakeAcceleration * 5000f * Time.deltaTime;
-            }
+            wheel.wheelCollider.brakeTorque = 0;
         }
-        else
+
+        if (moveInput < 0 && speed > 2f)
         {
             foreach (var wheel in wheels)
             {
-                wheel.wheelCollider.brakeTorque = 0;
+                wheel.wheelCollider.brakeTorque = brakeAcceleration * 1000f * Time.deltaTime;
             }
         }
 
-        // Space = handbrake
         if (Input.GetKey(KeyCode.Space))
         {
             foreach (var wheel in wheels)
             {
-                wheel.wheelCollider.brakeTorque = brakeAcceleration * 8000f * Time.deltaTime;
+                wheel.wheelCollider.brakeTorque = brakeAcceleration * 2500f * Time.deltaTime;
             }
         }
     }
