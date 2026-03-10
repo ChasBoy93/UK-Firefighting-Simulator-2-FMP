@@ -38,6 +38,13 @@ public class TruckController : MonoBehaviour
         truckRb = GetComponent<Rigidbody>();
         truckRb.centerOfMass = _centerOfMass;
     }
+
+    void Start()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     void Update()
     {
         GetInputs();
