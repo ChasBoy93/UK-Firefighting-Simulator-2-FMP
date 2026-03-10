@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,7 +18,7 @@ public class TruckController : MonoBehaviour
         public Axel axel;
     }
 
-    public float maxAcceleration = 6000f;
+    public float maxAcceleration = 1000f;
     public float brakeAcceleration = 50f;
 
     public float turnSensitivity = 1.0f;
