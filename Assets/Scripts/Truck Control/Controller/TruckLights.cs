@@ -1,7 +1,5 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal;
 
 public class TruckLights : MonoBehaviour
 {
@@ -17,37 +15,23 @@ public class TruckLights : MonoBehaviour
         public Side side;
     }
 
-    public bool isRearLightsOn;
-
     public List<Light> lights;
 
-    void Start()
+    private bool isBraking = false;
+
+    public void SetBraking(bool braking)
     {
-        isRearLightsOn = false;
+        isBraking = braking;
+        UpdateBrakeLights();
     }
 
-    public void OperateRearLights()
+    private void UpdateBrakeLights()
     {
-        if(isRearLightsOn)
+        foreach (var light in lights)
         {
-            // Turn Lights On
-            foreach (Light light in lights)
+            if (light.side == Side.Back)
             {
-                if (light.side == Side.Back && light.lightObj.activeInHierarchy == false)
-                {
-                    light.lightObj.SetActive(true);
-                }
-            }
-        }
-        else
-        {
-            // Turn Lights Off
-            foreach (Light light in lights)
-            {
-                if (light.side == Side.Back && light.lightObj.activeInHierarchy == true)
-                {
-                    light.lightObj.SetActive(false);
-                }
+                light.lightObj.SetActive(isBraking);
             }
         }
     }

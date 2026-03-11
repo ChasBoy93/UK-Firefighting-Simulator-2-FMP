@@ -18,22 +18,22 @@ public class TruckController : MonoBehaviour
         public Axel axel;
     }
 
+    [Header("Truck Settings")]
     public float maxAcceleration = 1000f;
     public float brakeAcceleration = 50f;
-
     public float turnSensitivity = 1.0f;
     public float maxSteerAngle = 30.0f;
-
     public Vector3 _centerOfMass;
-
     public List<Wheel> wheels;
 
-    float moveInput;
-    float steerInput;
+    [HideInInspector] public float moveInput;
+    [HideInInspector] public float steerInput;
 
     private Rigidbody truckRb;
-
     private TruckLights truckLights;
+
+    [Obsolete]
+    public float RigidbodyVelocity => truckRb.velocity.magnitude;
 
     void Awake()
     {
@@ -52,7 +52,7 @@ public class TruckController : MonoBehaviour
     void Update()
     {
         GetInputs();
-        AnimatedWheels();
+        AnimateWheels();
     }
 
     void LateUpdate()
@@ -72,7 +72,7 @@ public class TruckController : MonoBehaviour
     {
         foreach (var wheel in wheels)
         {
-            wheel.wheelCollider.motorTorque = moveInput * 1500 * maxAcceleration * Time.deltaTime;
+            wheel.wheelCollider.motorTorque = moveInput * maxAcceleration * Time.deltaTime * 1500f;
         }
     }
 
@@ -82,36 +82,32 @@ public class TruckController : MonoBehaviour
         {
             if (wheel.axel == Axel.Front)
             {
-                var _steerAngle = steerInput * turnSensitivity * maxSteerAngle;
-                wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, _steerAngle, 0.6f);
+                float targetAngle = steerInput * turnSensitivity * maxSteerAngle;
+                wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, targetAngle, 0.6f);
             }
         }
     }
 
     void Brake()
     {
-        float speed = truckRb.linearVelocity.magnitude;
 
         foreach (var wheel in wheels)
         {
-            wheel.wheelCollider.brakeTorque = 0;
+            wheel.wheelCollider.brakeTorque = 0f;
         }
 
-        if (moveInput < 0 && speed > 2f)
+        bool isBraking = false;
+
+
+        if (moveInput < 0 && RigidbodyVelocity > 2f)
         {
             foreach (var wheel in wheels)
             {
                 wheel.wheelCollider.brakeTorque = brakeAcceleration * 1000f * Time.deltaTime;
             }
+            isBraking = true;
+        }
 
-            truckLights.isRearLightsOn = true;
-            truckLights.OperateRearLights();
-        }
-        else
-        {
-            truckLights.isRearLightsOn = false;
-            truckLights.OperateRearLights();
-        }
 
         if (Input.GetKey(KeyCode.Space))
         {
@@ -119,26 +115,24 @@ public class TruckController : MonoBehaviour
             {
                 wheel.wheelCollider.brakeTorque = brakeAcceleration * 2500f * Time.deltaTime;
             }
-            truckLights.isRearLightsOn = true;
-            truckLights.OperateRearLights();
+            isBraking = true;
         }
-        else
+
+
+        if (truckLights != null)
         {
-            truckLights.isRearLightsOn = false;
-            truckLights.OperateRearLights();
+            truckLights.SetBraking(isBraking);
         }
+
     }
 
-    void AnimatedWheels()
+    void AnimateWheels()
     {
         foreach (var wheel in wheels)
         {
-            Quaternion rot;
-            Vector3 pos;
-            wheel.wheelCollider.GetWorldPose(out pos, out rot);
+            wheel.wheelCollider.GetWorldPose(out Vector3 pos, out Quaternion rot);
             wheel.wheelModel.transform.position = pos;
             wheel.wheelModel.transform.rotation = rot;
         }
     }
-
 }
