@@ -33,6 +33,8 @@ public class TruckController : MonoBehaviour
 
     private Rigidbody truckRb;
 
+    private TruckLights truckLights;
+
     void Awake()
     {
         truckRb = GetComponent<Rigidbody>();
@@ -43,6 +45,8 @@ public class TruckController : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        truckLights = GetComponent<TruckLights>();
     }
 
     void Update()
@@ -99,6 +103,14 @@ public class TruckController : MonoBehaviour
             {
                 wheel.wheelCollider.brakeTorque = brakeAcceleration * 1000f * Time.deltaTime;
             }
+
+            truckLights.isRearLightsOn = true;
+            truckLights.OperateRearLights();
+        }
+        else
+        {
+            truckLights.isRearLightsOn = false;
+            truckLights.OperateRearLights();
         }
 
         if (Input.GetKey(KeyCode.Space))
@@ -107,6 +119,13 @@ public class TruckController : MonoBehaviour
             {
                 wheel.wheelCollider.brakeTorque = brakeAcceleration * 2500f * Time.deltaTime;
             }
+            truckLights.isRearLightsOn = true;
+            truckLights.OperateRearLights();
+        }
+        else
+        {
+            truckLights.isRearLightsOn = false;
+            truckLights.OperateRearLights();
         }
     }
 
