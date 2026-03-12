@@ -25,7 +25,7 @@ public class TruckLights : MonoBehaviour
         UpdateBrakeLights();
     }
 
-    private void UpdateBrakeLights()
+    void UpdateBrakeLights()
     {
         foreach (var light in lights)
         {

@@ -59,9 +59,11 @@ public class PumpControl : MonoBehaviour
     public GameObject autoPressureModeText;
     public GameObject manualPressureModeText;
 
-    // =========================
-    // PUMP ON / OFF
-    // =========================
+
+    [Header("PTO Audio")]
+    public AudioSource startPTOAudio;
+    public AudioSource loopingPTOAudio;
+    public AudioSource stopPTOAudio;
 
     public void TogglePump()
     {
@@ -69,31 +71,44 @@ public class PumpControl : MonoBehaviour
 
         if (isPumpOn)
         {
+            // Update pump UI
             pumpSelectNormal.SetActive(false);
             pumpSelected.SetActive(true);
             pumpImpellerIcon.SetActive(true);
 
-            pumpOnWarningSound.Play();
+            // Start the audio sequence
+            StartCoroutine(PlayPumpStartAudioSequence());
 
+            // Initialize pressures
             currentHighPressure = idleHP;
             currentLowPressure = idleLP;
 
             autoPressureModeText.SetActive(true);
             manualPressureModeText.SetActive(false);
 
+            // Start flicker routines
             hpFlickerRoutine = StartCoroutine(HighPressureFlicker());
             lpFlickerRoutine = StartCoroutine(LowPressureFlicker());
         }
         else
         {
+            // Reset pump UI
             pumpSelectNormal.SetActive(true);
             pumpSelected.SetActive(false);
             pumpImpellerIcon.SetActive(false);
 
-            pumpOffWarningSound.Play();
-
+            // Stop all coroutines (flickers & ramps)
             StopAllCoroutines();
 
+            // Stop the looping PTO audio if it's playing
+            if (loopingPTOAudio.isPlaying)
+                loopingPTOAudio.Stop();
+
+            // Play stop audio and warning
+            stopPTOAudio.Play();
+            pumpOffWarningSound.Play();
+
+            // Reset pressures
             currentHighPressure = 0;
             currentLowPressure = 0f;
 
@@ -105,9 +120,22 @@ public class PumpControl : MonoBehaviour
         }
     }
 
-    // =========================
-    // LOW PRESSURE
-    // =========================
+    // Coroutine to play start audio sequence
+    private IEnumerator PlayPumpStartAudioSequence()
+    {
+        // Play start PTO audio
+        startPTOAudio.Play();
+
+        // Play warning sound simultaneously (optional, can also yield if you want it after start)
+        pumpOnWarningSound.Play();
+
+        // Wait until start audio finishes
+        yield return new WaitForSeconds(startPTOAudio.clip.length);
+
+        // Start looping PTO audio
+        loopingPTOAudio.Play();
+    }
+
 
     public void ToggleFourBarPressure()
     {
@@ -145,9 +173,6 @@ public class PumpControl : MonoBehaviour
         StartHighPressureRamp(hpTarget);
     }
 
-    // =========================
-    // HIGH PRESSURE
-    // =========================
 
     public void ToggleTwentyEightBarPressure()
     {
@@ -173,9 +198,6 @@ public class PumpControl : MonoBehaviour
         StartLowPressureRamp(lpTarget);
     }
 
-    // =========================
-    // SAFE RAMP START
-    // =========================
 
     void StartHighPressureRamp(int target)
     {
@@ -221,9 +243,6 @@ public class PumpControl : MonoBehaviour
         currentLowPressure = target;
     }
 
-    // =========================
-    // FLICKER
-    // =========================
 
     IEnumerator HighPressureFlicker()
     {
@@ -257,9 +276,6 @@ public class PumpControl : MonoBehaviour
         }
     }
 
-    // =========================
-    // UI HELPERS
-    // =========================
 
     void UpdateButtons()
     {

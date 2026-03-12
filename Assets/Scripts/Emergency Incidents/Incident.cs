@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Incident : MonoBehaviour
 {
+    public string incidentName;
+
     public List<GameObject> incidentObjects;
 
     CallManager manager;
@@ -15,7 +17,6 @@ public class Incident : MonoBehaviour
         {
             obj.SetActive(true);
         }
-
     }
 
     public void EndIncident()
@@ -24,6 +25,5 @@ public class Incident : MonoBehaviour
         {
             obj.SetActive(false);
         }
-
     }
 }

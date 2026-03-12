@@ -4,19 +4,22 @@ public class TruckSounds : MonoBehaviour
 {
     public float minSpeed;
     public float maxSpeed;
-    private float currentSpeed;
-
-    private Rigidbody truckRb;
-    private AudioSource truckAudio;
 
     public float minPitch;
     public float maxPitch;
+
+    private float currentSpeed;
     private float pitchFromTruck;
+
+    private Rigidbody truckRb;
+    private AudioSource truckAudio;
+    private TruckController controller;
 
     void Start()
     {
         truckAudio = GetComponent<AudioSource>();
         truckRb = GetComponent<Rigidbody>();
+        controller = GetComponent<TruckController>();
     }
 
     void Update()
@@ -26,10 +29,15 @@ public class TruckSounds : MonoBehaviour
 
     void EngineSound()
     {
+        if (!controller.engineRunning)
+        {
+            return;
+        }
+
         currentSpeed = truckRb.linearVelocity.magnitude;
         pitchFromTruck = truckRb.linearVelocity.magnitude / 50f;
 
-        if(currentSpeed < minSpeed)
+        if (currentSpeed < minSpeed)
         {
             truckAudio.pitch = minPitch;
         }
@@ -39,7 +47,8 @@ public class TruckSounds : MonoBehaviour
         }
         else
         {
-            truckAudio.pitch = Mathf.Lerp(minPitch, maxPitch, pitchFromTruck);
+            truckAudio.pitch =
+                Mathf.Lerp(minPitch, maxPitch, pitchFromTruck);
         }
     }
 }

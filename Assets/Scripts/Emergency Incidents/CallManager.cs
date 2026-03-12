@@ -28,6 +28,8 @@ public class CallManager : MonoBehaviour
 
     Incident activeIncident;
 
+    public MDTController mdt;
+
     void Start()
     {
         StartCoroutine(CallRoutine());
@@ -63,6 +65,11 @@ public class CallManager : MonoBehaviour
 
         activeIncident = incidents[index];
         activeIncident.StartIncident(this);
+
+        if (mdt != null)
+        {
+            mdt.ReceiveCall(activeIncident.incidentName);
+        }
 
         stationAvailable = false;
 
