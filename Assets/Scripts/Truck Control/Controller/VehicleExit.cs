@@ -9,6 +9,8 @@ public class VehicleExit : MonoBehaviour
     public GameObject liveVehicle;
     public GameObject entryTrig;
 
+    public MDTController mdt;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -22,6 +24,8 @@ public class VehicleExit : MonoBehaviour
             liveVehicle.GetComponent<TruckSounds>().enabled = false;
             liveVehicle.GetComponent<TruckLights>().enabled = false;
             thePlayer.transform.parent = null;
+
+            mdt.SetPlayerInVehicle(false);
 
             StartCoroutine(EnterAgain());
         }
