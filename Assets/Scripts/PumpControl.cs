@@ -202,7 +202,9 @@ public class PumpControl : MonoBehaviour
     void StartHighPressureRamp(int target)
     {
         if (hpRampRoutine != null)
+        {
             StopCoroutine(hpRampRoutine);
+        }
 
         hpRampRoutine = StartCoroutine(RampHighPressure(target));
     }
@@ -210,7 +212,9 @@ public class PumpControl : MonoBehaviour
     void StartLowPressureRamp(float target)
     {
         if (lpRampRoutine != null)
+        {
             StopCoroutine(lpRampRoutine);
+        }
 
         lpRampRoutine = StartCoroutine(RampLowPressure(target));
     }
@@ -220,9 +224,13 @@ public class PumpControl : MonoBehaviour
         while (currentHighPressure != target)
         {
             if (currentHighPressure < target)
+            {
                 currentHighPressure++;
+            }
             else
+            {
                 currentHighPressure--;
+            }
 
             yield return new WaitForSeconds(0.05f);
         }
