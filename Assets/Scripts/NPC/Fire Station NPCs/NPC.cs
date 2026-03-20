@@ -7,11 +7,9 @@ namespace Game.FireStationNavigation
     [RequireComponent(typeof(Animator))]
     public class NPC : MonoBehaviour
     {
-        [HideInInspector]
-        public NavMeshAgent agent;
+        [HideInInspector] public NavMeshAgent agent;
 
-        [HideInInspector]
-        public Animator animator;
+        [HideInInspector] public Animator animator;
 
         public float CurrentSpeed
         {
