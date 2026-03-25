@@ -1,11 +1,10 @@
+using Artemis;
 using UnityEngine;
 
 public class PumpScreenInteraction : MonoBehaviour, IInteractable
 {
     public GameObject pumpScreenUi;
-
-
-
+    public GameObject playerCameraStop;
 
     public void Interact()
     {
@@ -17,7 +16,7 @@ public class PumpScreenInteraction : MonoBehaviour, IInteractable
         pumpScreenUi.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-
+        playerCameraStop.GetComponent<FPController>().enabled = false;
     }
 
     public string GetInteractionText()
@@ -30,7 +29,6 @@ public class PumpScreenInteraction : MonoBehaviour, IInteractable
         pumpScreenUi.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
+        playerCameraStop.GetComponent<FPController>().enabled = true;
     }
-
 }
