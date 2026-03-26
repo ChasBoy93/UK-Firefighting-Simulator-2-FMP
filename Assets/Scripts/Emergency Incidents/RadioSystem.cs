@@ -1,25 +1,66 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 
 public class RadioSystem : MonoBehaviour
 {
     public AudioSource radioSource;
-
     public TMP_Text subtitleText;
+    public GameObject subtitleContainer;
 
-    public void PlayRadio(AudioClip clip, string subtitle)
+    private Queue<RadioMessage> messageQueue = new Queue<RadioMessage>();
+    private bool isPlaying = false;
+
+    public void PlayRadio(RadioMessage message)
     {
-        radioSource.clip = clip;
-        radioSource.Play();
+        if (message == null)
+        {
+            return;
+        }
 
-        subtitleText.text = subtitle;
+            messageQueue.Enqueue(message);
 
-        CancelInvoke();
-        Invoke("ClearSubtitle", clip.length);
+        if (!isPlaying)
+        {
+            StartCoroutine(ProcessQueue());
+        }
     }
 
-    void ClearSubtitle()
+    IEnumerator ProcessQueue()
     {
+        isPlaying = true;
+
+        while (messageQueue.Count > 0)
+        {
+            RadioMessage message = messageQueue.Dequeue();
+
+            subtitleContainer.SetActive(true);
+
+            if (message.controlClip != null)
+            {
+                radioSource.clip = message.controlClip;
+                radioSource.Play();
+                subtitleText.text = message.controlSubtitle;
+
+                yield return new WaitForSeconds(message.controlClip.length);
+            }
+
+            if (message.responseClip != null)
+            {
+                yield return new WaitForSeconds(message.responseDelay);
+
+                radioSource.clip = message.responseClip;
+                radioSource.Play();
+                subtitleText.text = message.responseSubtitle;
+
+                yield return new WaitForSeconds(message.responseClip.length);
+            }
+        }
+
         subtitleText.text = "";
+        subtitleContainer.SetActive(false);
+
+        isPlaying = false;
     }
 }

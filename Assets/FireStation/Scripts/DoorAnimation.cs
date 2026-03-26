@@ -10,7 +10,6 @@ public class DoorAnimation : MonoBehaviour, IInteractable
 	public string onTriggerExitParameterName;
 	public AudioClip OpenSound;
 	public AudioClip CloseSound;
-
 	bool isDoorOpen;
 
 

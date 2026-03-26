@@ -1,26 +1,23 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RadioTrigger : MonoBehaviour
 {
     public RadioSystem radio;
+    public RadioMessage message;
 
-    public AudioClip clip;
-
-    public string subtitle;
-
-    bool played = false;
+    private bool played = false;
 
     void OnTriggerEnter(Collider other)
     {
         if (played) return;
+        if (!other.CompareTag("Fire Appliance")) return;
 
-        if (!other.CompareTag("FireEngine")) return;
-
-        if (radio != null)
-        {
-            radio.PlayRadio(clip, subtitle);
-        }
-
+        radio?.PlayRadio(message);
         played = true;
+    }
+
+    public void ResetTrigger()
+    {
+        played = false;
     }
 }

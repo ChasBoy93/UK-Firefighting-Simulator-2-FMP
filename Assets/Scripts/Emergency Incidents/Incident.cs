@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Incident : MonoBehaviour
@@ -24,6 +24,14 @@ public class Incident : MonoBehaviour
         foreach (GameObject obj in incidentObjects)
         {
             obj.SetActive(false);
+        }
+
+        // ✅ RESET ALL RADIO TRIGGERS
+        RadioTrigger[] triggers = GetComponentsInChildren<RadioTrigger>(true);
+
+        foreach (RadioTrigger trigger in triggers)
+        {
+            trigger.ResetTrigger();
         }
     }
 }

@@ -4,19 +4,32 @@ public class StationReturnTrigger : MonoBehaviour
 {
     public CallManager callManager;
 
-    public RadioSystem radio;
-
-    public AudioClip clip;
-
-    public string subtitle;
+    private bool used = false; 
 
     void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("FireEngine")) return;
+        if (used) return; 
 
-        if (radio != null)
-            radio.PlayRadio(clip, subtitle);
+        if (!other.CompareTag("Fire Appliance")) return;
 
-        callManager.ReturnToStation();
+        used = true; 
+
+        if (callManager != null)
+        {
+            callManager.ReturnToStation();
+        }
+
+
+        Invoke("DisableTrigger", 0.2f);
+    }
+
+    void DisableTrigger()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void ResetTrigger()
+    {
+        used = false;
     }
 }

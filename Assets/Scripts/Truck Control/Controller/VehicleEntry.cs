@@ -29,6 +29,7 @@ public class VehicleEntry : MonoBehaviour
 
                 liveVehicle.GetComponent<TruckSounds>().enabled = true;
                 liveVehicle.GetComponent<TruckLights>().enabled = true;
+                liveVehicle.GetComponent<BlueLightController>().enabled = true;
                 canEnter = false;
                 thePlayer.transform.parent = this.gameObject.transform;
 

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,7 +11,6 @@ public class CallManager : MonoBehaviour
     public List<AudioSource> applianceAlarms;
 
     public List<GameObject> lightTowers;
-
     public List<GameObject> stationLights;
 
     public Material emissionMaterial;
@@ -78,12 +77,10 @@ public class CallManager : MonoBehaviour
             alarm.Play();
         }
 
-
         foreach (AudioSource alarm in applianceAlarms)
         {
             alarm.Play();
         }
-
 
         foreach (GameObject tower in lightTowers)
         {
@@ -121,6 +118,23 @@ public class CallManager : MonoBehaviour
 
     public void AcknowledgeCall()
     {
+        foreach (AudioSource alarm in applianceAlarms)
+        {
+            alarm.Stop();
+        }
+
+        IcAlarmLightAnim.SetActive(false);
+    }
+
+    public void ReturnToStation()
+    {
+
+        if (activeIncident != null)
+        {
+            activeIncident.EndIncident();
+            activeIncident = null;
+        }
+
 
         foreach (AudioSource alarm in applianceAlarms)
         {
@@ -130,12 +144,23 @@ public class CallManager : MonoBehaviour
         IcAlarmLightAnim.SetActive(false);
 
 
-    }
+        foreach (GameObject tower in lightTowers)
+        {
+            tower.SetActive(false);
+        }
 
-    public void ReturnToStation()
-    {
-        if (activeIncident != null)
-            activeIncident.EndIncident();
+        foreach (GameObject stnlights in stationLights)
+        {
+            stnlights.SetActive(false);
+        }
+
+        SetEmission(false);
+
+
+        if (mdt != null)
+        {
+            mdt.ResetMDT();
+        }
 
         stationAvailable = true;
     }

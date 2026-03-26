@@ -64,4 +64,13 @@ public class MDTController : MonoBehaviour
         Cursor.visible = false;
 
     }
+
+    public void ResetMDT()
+    {
+        callActive = false;
+        mdtScreen.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 }

@@ -23,6 +23,7 @@ public class VehicleExit : MonoBehaviour
 
             liveVehicle.GetComponent<TruckSounds>().enabled = false;
             liveVehicle.GetComponent<TruckLights>().enabled = false;
+            liveVehicle.GetComponent<BlueLightController>().enabled = false;
             thePlayer.transform.parent = null;
 
             mdt.SetPlayerInVehicle(false);
