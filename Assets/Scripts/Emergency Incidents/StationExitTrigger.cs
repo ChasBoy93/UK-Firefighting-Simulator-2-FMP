@@ -7,9 +7,6 @@ public class StationExitTrigger : MonoBehaviour
     public GameObject returnTrigger;
     public float delay = 2f;
 
-    [SerializeField] private List<Fire> fireScripts = new List<Fire>();
-    [SerializeField] private float resetIntensity = 1.0f;
-
     private bool canTrigger = true; 
 
     void OnTriggerEnter(Collider other)
@@ -25,13 +22,6 @@ public class StationExitTrigger : MonoBehaviour
             StartCoroutine(ActivateTriggerAfterDelay());
         }
 
-        foreach (Fire fire in fireScripts)
-        {
-            if (fire != null)
-            {
-                fire.Reignite(resetIntensity);
-            }
-        }
 
         StartCoroutine(ResetTrigger());
     }
@@ -47,4 +37,6 @@ public class StationExitTrigger : MonoBehaviour
         yield return new WaitForSeconds(2f);
         canTrigger = true;
     }
+
+
 }

@@ -41,10 +41,10 @@ public class DoorAnimation : MonoBehaviour, IInteractable
     {
         if (isDoorOpen)
 		{
-            return "Close Pump Bay Door";
+            return "Close Bay Door";
         }
 		
-		return "Open Pump Bay Door";
+		return "Open Bay Door";
     }
 
 

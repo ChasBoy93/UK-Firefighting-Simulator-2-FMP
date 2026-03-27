@@ -68,17 +68,21 @@ public class BlueLightController : MonoBehaviour
         {
             hornSound.Play();
 
-            if (!blueLightsOn) return;
+            if (!blueLightsOn)
+            {
+                return;
+            }
 
-            float timeSinceLastPress = Time.time - lastHPressTime;
+                float timeSinceLastPress = Time.time - lastHPressTime;
 
             if (timeSinceLastPress <= doubleTapTime && sirenIsActive)
             {
                 lastHPressTime = 0f;
 
                 if (tapCoroutine != null)
+                {
                     StopCoroutine(tapCoroutine);
-
+                }
                 DoubleTapStop();
             }
             else
@@ -86,7 +90,9 @@ public class BlueLightController : MonoBehaviour
                 lastHPressTime = Time.time;
 
                 if (tapCoroutine != null)
+                {
                     StopCoroutine(tapCoroutine);
+                }
 
                 tapCoroutine = StartCoroutine(SingleTapDelayed());
             }
@@ -133,8 +139,10 @@ public class BlueLightController : MonoBehaviour
         currentSiren = sirenArray[sirenIndex];
 
         if (currentSiren != null)
+        {
             currentSiren.Play();
-
+        }
+           
         sirenIsActive = true;
 
         sirenIndex = (sirenIndex + 1) % sirenArray.Length;
@@ -147,7 +155,10 @@ public class BlueLightController : MonoBehaviour
         AudioSource nextSiren = sirenArray[sirenIndex];
 
         if (blipCoroutine != null)
+        {
             StopCoroutine(blipCoroutine);
+        }
+            
 
         blipCoroutine = StartCoroutine(SirenBlip(nextSiren));
 
@@ -171,7 +182,10 @@ public class BlueLightController : MonoBehaviour
     void StopSiren()
     {
         if (currentSiren != null)
+        {
             currentSiren.Stop();
+        }
+            
 
         currentSiren = null;
         sirenIsActive = false;

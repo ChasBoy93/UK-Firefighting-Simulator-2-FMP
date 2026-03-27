@@ -1,0 +1,360 @@
+fileFormatVersion: 2
+guid: dc2ecfb555c59984e84701332eea413f
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Costuras
+    second: {fileID: 2100000, guid: eab96f48fcf8364439d35815d9afa062, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LightMain
+    second: {fileID: 2100000, guid: e98ac5d9a70d1b54bbf821545bd4fa6b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ORANGE
+    second: {fileID: 2100000, guid: c67cb05ca557dac4aad3ed5aa53be13d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_Aairbag
+    second: {fileID: 2100000, guid: 40ad391c2499ea9479da52e6290c73a0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_Alum_Br
+    second: {fileID: 2100000, guid: d1560572d567afc44ac04551b790bfb1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_BlackP_Line
+    second: {fileID: 2100000, guid: 0868b14010f62da4ab7a05778f0c1529, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_Blackpaint
+    second: {fileID: 2100000, guid: cac39ef5d21ddf14c82be6c5422b1ab6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_CarPaint
+    second: {fileID: 2100000, guid: d8327952ffa0e7b48b56135446820a96, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_CarPaint_2
+    second: {fileID: 2100000, guid: 7a77757f0a1286f4e8533069de072445, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_CarPaint_Sensor
+    second: {fileID: 2100000, guid: 4c55e233262dfbc48871be9e625bacf2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_Carpet
+    second: {fileID: 2100000, guid: 992cd9bb78fbee64cb60cb3248e364c9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_Chrome_Lines
+    second: {fileID: 2100000, guid: e4cd41c11bec4e94b9e6623cd7a56cee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_GearStick1
+    second: {fileID: 2100000, guid: fa781ef5f46b1a94893039bc3e68b97f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_Icons
+    second: {fileID: 2100000, guid: 74161f722b3a10c4f8a9d33ec8823129, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_Leather_Dots
+    second: {fileID: 2100000, guid: d466c059604d0e745ad24de6d34fa37d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_Leather_Grey
+    second: {fileID: 2100000, guid: 14277bbdbbb19444694260a1db351ed8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_Leather_Smo
+    second: {fileID: 2100000, guid: 707e8ec580133d2438e0a3d050d1913f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_Logo
+    second: {fileID: 2100000, guid: fc77378fec2cbe84eb9be7a4791f4dfa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_Pedals
+    second: {fileID: 2100000, guid: 7a31249c888fdd940b623b28430f5c29, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_Plas_leather
+    second: {fileID: 2100000, guid: 0daffb1eff135bf4d9c71b99773a8901, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_Rubber
+    second: {fileID: 2100000, guid: a245d9fa4f83dce40a757ddedad2c46d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_ST
+    second: {fileID: 2100000, guid: 9a2527a57173e984abd9124079674d07, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_SWW_Normal
+    second: {fileID: 2100000, guid: 0e0ab99282315fd44be88a1fccab87ad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_SW_ST
+    second: {fileID: 2100000, guid: 3b27c84fc04e8b84ca455e939a447583, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_Seatbelt
+    second: {fileID: 2100000, guid: deef188c71268b946b9ab65c9a56894b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_Speaker
+    second: {fileID: 2100000, guid: 6cd45ba17cfd27d45bb8c0b2705ca356, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_black
+    second: {fileID: 2100000, guid: 9feafb5b797363042bf9e1d7008dd7c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_chrome
+    second: {fileID: 2100000, guid: 12f05bf48cae6524b8ebfc6aa0978276, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_chrome_Sq
+    second: {fileID: 2100000, guid: ebd907244cee5464fb20804d5ff3f80e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_grill
+    second: {fileID: 2100000, guid: 85c7fb90972842c429c9ab7d786faeb3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_plasatic_diff
+    second: {fileID: 2100000, guid: da3fbcc41c06c684b81734ef9cb07a67, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_plastic_SH
+    second: {fileID: 2100000, guid: ec684341e34ae374d93d680919f7907d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_red
+    second: {fileID: 2100000, guid: 8e7b83b6e47e1c64788de5b905526c47, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_roof
+    second: {fileID: 2100000, guid: d6f9af6d712f5a5408ddd5315f9fc604, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_screen
+    second: {fileID: 2100000, guid: 0097385acc19db14ca248a9f2a5fc040, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_tyre
+    second: {fileID: 2100000, guid: 616d8fa745b4a2d4a89c944ac2a10d72, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: P_windows_glass
+    second: {fileID: 2100000, guid: ed03c076a3f899a43bccb810f6cbb630, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: black_Grid
+    second: {fileID: 2100000, guid: b26d7ac92a593fd45841c8a946f7857a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: brushM
+    second: {fileID: 2100000, guid: 0bb5834f6de646f4b824f8ac233966a6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: calipers
+    second: {fileID: 2100000, guid: 06a99ee438300a64fb75484b125ba15f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: disk
+    second: {fileID: 2100000, guid: d0af567051452c34dbd839d19247dd58, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: fabrics
+    second: {fileID: 2100000, guid: 1c6691fe27742114e867a7d3068b863e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glass_Light
+    second: {fileID: 2100000, guid: 0d96af1c5dad90d4fafeec59be3a8325, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gtline
+    second: {fileID: 2100000, guid: a3204a190681b1e49906a961f89da5c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: leather
+    second: {fileID: 2100000, guid: e88c4127cc0cab74f9067e2f0524b2dd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: leather_custom
+    second: {fileID: 2100000, guid: db2deb395e806f84090239bc9a26e313, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: leather_pattern
+    second: {fileID: 2100000, guid: 6c5e50e82e1e28246b5d8e1afae878b3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plate
+    second: {fileID: 2100000, guid: 32eacd8da71699f49ae99c14649d861d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: red_glass
+    second: {fileID: 2100000, guid: 464598e32d8e4cf4eaad96a6f9426eb6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: white
+    second: {fileID: 2100000, guid: 056446a085f16c4439f13ac8c6750b05, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
