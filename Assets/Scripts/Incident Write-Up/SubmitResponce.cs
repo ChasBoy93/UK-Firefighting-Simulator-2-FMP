@@ -4,13 +4,13 @@ using TMPro;
 
 public class SubmitResponce : MonoBehaviour
 {
-    public List<GameObject> textInputFields;
+    public TMP_InputField[] textInputFields;
 
     public void ClearText()
     {
-        foreach (GameObject inputField in textInputFields)
+        foreach (TMP_InputField field in textInputFields)
         {
-
+            field.text = "";
         }
     }
 }
