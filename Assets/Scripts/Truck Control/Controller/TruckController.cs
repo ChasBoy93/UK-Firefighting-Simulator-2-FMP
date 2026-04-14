@@ -45,8 +45,7 @@ public class TruckController : MonoBehaviour
     private TruckLights truckLights;
     private AudioSource engineAudio;
 
-    [Obsolete]
-    public float RigidbodyVelocity => truckRb.velocity.magnitude;
+    public float RigidbodyVelocity => truckRb.linearVelocity.magnitude;
 
     void Awake()
     {
@@ -177,7 +176,7 @@ public class TruckController : MonoBehaviour
 
         foreach (var wheel in wheels)
         {
-            wheel.wheelCollider.motorTorque = moveInput * maxAcceleration * Time.deltaTime * 1500f;
+            wheel.wheelCollider.motorTorque = moveInput * maxAcceleration * Time.deltaTime * 2000f;
         }
     }
 

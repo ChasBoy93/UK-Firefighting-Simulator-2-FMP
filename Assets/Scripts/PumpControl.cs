@@ -12,7 +12,7 @@ public class PumpControl : MonoBehaviour
     public AudioSource pumpOnWarningSound;
     public AudioSource pumpOffWarningSound;
 
-    private bool isPumpOn = false;
+    public bool isPumpOn = false;
 
     [Header("Low Pressure Buttons")]
     public GameObject fourBarLPNormal;
@@ -65,6 +65,9 @@ public class PumpControl : MonoBehaviour
     public AudioSource loopingPTOAudio;
     public AudioSource stopPTOAudio;
 
+    [Header("Other")]
+    public GameObject fireHoseParticle;
+
     public void TogglePump()
     {
         isPumpOn = !isPumpOn;
@@ -89,9 +92,13 @@ public class PumpControl : MonoBehaviour
             // Start flicker routines
             hpFlickerRoutine = StartCoroutine(HighPressureFlicker());
             lpFlickerRoutine = StartCoroutine(LowPressureFlicker());
+
+            fireHoseParticle.SetActive(true);
         }
         else
         {
+            fireHoseParticle.SetActive(false);
+
             // Reset pump UI
             pumpSelectNormal.SetActive(true);
             pumpSelected.SetActive(false);
@@ -117,6 +124,7 @@ public class PumpControl : MonoBehaviour
 
             ResetGauges();
             DeselectAllPressures();
+
         }
     }
 

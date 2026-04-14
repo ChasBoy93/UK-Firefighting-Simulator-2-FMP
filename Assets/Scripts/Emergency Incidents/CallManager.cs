@@ -9,9 +9,16 @@ public class CallManager : MonoBehaviour
 
     public List<AudioSource> stationAlarms;
     public List<AudioSource> applianceAlarms;
+    public AudioSource mdtAlarm;
 
     public List<GameObject> lightTowers;
     public List<GameObject> stationLights;
+
+    public List<GameObject> exitTriggers;
+    public GameObject returnTrigger;
+
+    public float returnTriggerDelay = 2f;
+    public float exitReEnableDelay = 3f;
 
     public Material emissionMaterial;
     public Texture emissionTexture;
@@ -92,6 +99,8 @@ public class CallManager : MonoBehaviour
             stnlights.SetActive(true);
         }
 
+        mdtAlarm.Play();
+
         IcAlarmLightAnim.SetActive(true);
 
         SetEmission(true);
@@ -122,6 +131,8 @@ public class CallManager : MonoBehaviour
         {
             alarm.Stop();
         }
+
+        mdtAlarm.Stop();
 
         IcAlarmLightAnim.SetActive(false);
     }
@@ -163,6 +174,21 @@ public class CallManager : MonoBehaviour
         }
 
         stationAvailable = true;
+
+        StartCoroutine(ReEnableExitTriggers());
+    }
+
+    IEnumerator ReEnableExitTriggers()
+    {
+        yield return new WaitForSeconds(exitReEnableDelay);
+
+        foreach (GameObject trigger in exitTriggers)
+        {
+            if (trigger != null)
+            {
+                trigger.SetActive(true);
+            }
+        }
     }
 
     void SetEmission(bool state)
@@ -176,6 +202,29 @@ public class CallManager : MonoBehaviour
         {
             emissionMaterial.DisableKeyword("_EMISSION");
             emissionMaterial.SetTexture("_EmissionMap", null);
+        }
+    }
+
+    public void HandleStationExit()
+    {
+        foreach (GameObject trigger in exitTriggers)
+        {
+            if (trigger != null)
+            {
+                trigger.SetActive(false);
+            }
+        }
+
+        StartCoroutine(EnableReturnTrigger());
+    }
+
+    IEnumerator EnableReturnTrigger()
+    {
+        yield return new WaitForSeconds(returnTriggerDelay);
+
+        if (returnTrigger != null)
+        {
+            returnTrigger.SetActive(true);
         }
     }
 }

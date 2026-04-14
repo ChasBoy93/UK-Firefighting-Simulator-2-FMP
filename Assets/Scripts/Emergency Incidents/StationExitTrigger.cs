@@ -1,42 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class StationExitTrigger : MonoBehaviour
 {
-    public GameObject returnTrigger;
-    public float delay = 2f;
-
-    private bool canTrigger = true; 
+    public CallManager callManager;
 
     void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Fire Appliance")) return;
-
-        if (!canTrigger) return; 
-
-        canTrigger = false;
-
-        if (returnTrigger != null)
+        if (!other.CompareTag("Fire Appliance"))
         {
-            StartCoroutine(ActivateTriggerAfterDelay());
+            return;
         }
 
-
-        StartCoroutine(ResetTrigger());
+        if (callManager != null)
+        {
+            callManager.HandleStationExit();
+        }
     }
-
-    IEnumerator ActivateTriggerAfterDelay()
-    {
-        yield return new WaitForSeconds(delay);
-        returnTrigger.SetActive(true);
-    }
-
-    IEnumerator ResetTrigger()
-    {
-        yield return new WaitForSeconds(2f);
-        canTrigger = true;
-    }
-
-
 }

@@ -7,6 +7,11 @@ public class RadioTrigger : MonoBehaviour
 
     private bool played = false;
 
+    void OnEnable()
+    {
+        played = false;
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (played) return;
