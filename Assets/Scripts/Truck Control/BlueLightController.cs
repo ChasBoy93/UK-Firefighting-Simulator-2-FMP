@@ -4,7 +4,10 @@ using System.Collections;
 public class BlueLightController : MonoBehaviour
 {
     public bool blueLightsOn;
+    public bool redLightsOn;
     public GameObject blueLights;
+    public GameObject rearBlueLights;
+    public GameObject redLights;
     public GameObject sirens;
 
     public AudioSource hornSound;
@@ -38,6 +41,7 @@ public class BlueLightController : MonoBehaviour
     void Update()
     {
         AllBlues();
+        AllReds();
         SirenControl();
     }
 
@@ -51,6 +55,7 @@ public class BlueLightController : MonoBehaviour
                 sirens.SetActive(false);
                 StopSiren();
                 blueLightsOn = false;
+                redLights.SetActive(false);
             }
             else
             {
@@ -59,6 +64,14 @@ public class BlueLightController : MonoBehaviour
                 blueLightsOn = true;
                 sirenIndex = 0;
             }
+        }
+    }
+
+    void AllReds()
+    {
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+
         }
     }
 
