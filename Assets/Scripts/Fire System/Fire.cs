@@ -60,10 +60,21 @@ public class Fire : MonoBehaviour
         }
     }
 
-    public void Reignite(float intensity)
+    public void Reignite()
     {
-        currentIntensity = Mathf.Clamp01(intensity);
+        currentIntensity = 1f;
         isLit = true;
+        timeLastWatered = 0f;
+
         ChangeIntensity();
+
+        for (int i = 0; i < firePartcleSystems.Length; i++)
+        {
+            var ps = firePartcleSystems[i];
+            if (ps == null) continue;
+
+            if (!ps.isPlaying)
+                ps.Play();
+        }
     }
 }
