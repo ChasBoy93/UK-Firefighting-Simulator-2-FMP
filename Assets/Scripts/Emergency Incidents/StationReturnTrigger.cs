@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class StationReturnTrigger : MonoBehaviour
@@ -5,6 +6,8 @@ public class StationReturnTrigger : MonoBehaviour
     public CallManager callManager;
 
     private bool used = false;
+
+    public List<GameObject> incidentInstructions;
 
     void OnEnable()
     {
@@ -31,5 +34,10 @@ public class StationReturnTrigger : MonoBehaviour
         }
 
         gameObject.SetActive(false);
+
+        foreach (GameObject instructions in incidentInstructions)
+        {
+            instructions.SetActive(false);
+        }
     }
 }
