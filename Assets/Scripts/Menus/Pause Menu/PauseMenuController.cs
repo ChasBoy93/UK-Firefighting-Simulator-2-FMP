@@ -1,6 +1,7 @@
 using Artemis;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenuController : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PauseMenuController : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject playerCameraStop;
     public Animator pauseMenuAnimator;
+    public Animator pauseMenuAnimatorOther;
 
     public void Update()
     {
@@ -28,6 +30,7 @@ public class PauseMenuController : MonoBehaviour
     public void Resume()
     {   
         pauseMenuAnimator.SetBool("Open 0", true);
+        pauseMenuAnimatorOther.SetBool("OtherOpen", true);
         StartCoroutine(ClosePauseMenuDelay());
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -40,6 +43,7 @@ public class PauseMenuController : MonoBehaviour
     {
         pauseMenuUI.SetActive(true);
         pauseMenuAnimator.SetBool("Open 0", false);
+        pauseMenuAnimatorOther.SetBool("OtherOpen", false);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Time.timeScale = 0f;
@@ -49,7 +53,18 @@ public class PauseMenuController : MonoBehaviour
 
     IEnumerator ClosePauseMenuDelay()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         pauseMenuUI.SetActive(false);
+    }
+
+    public void ExitTheGame()
+    {
+        Application.Quit();
+        Debug.Log("Exiting the game");
+    }
+
+    public void LoadMainMenu(string LevelToLoad)
+    {
+        SceneManager.LoadScene(LevelToLoad);
     }
 }
