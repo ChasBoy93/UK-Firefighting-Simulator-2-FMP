@@ -8,6 +8,7 @@ public class VehicleExit : MonoBehaviour
     public GameObject thePlayer;
     public GameObject liveVehicle;
     public GameObject entryTrig;
+    public GameObject firefighter;
 
     public MDTController mdt;
 
@@ -24,6 +25,7 @@ public class VehicleExit : MonoBehaviour
             liveVehicle.GetComponent<TruckSounds>().enabled = false;
             liveVehicle.GetComponent<TruckLights>().enabled = false;
             liveVehicle.GetComponent<BlueLightController>().enabled = false;
+            firefighter.SetActive(false);
             thePlayer.transform.parent = null;
 
             mdt.SetPlayerInVehicle(false);
