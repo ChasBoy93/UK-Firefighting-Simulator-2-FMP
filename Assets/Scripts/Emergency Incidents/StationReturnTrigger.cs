@@ -8,6 +8,7 @@ public class StationReturnTrigger : MonoBehaviour
     private bool used = false;
 
     public List<GameObject> incidentInstructions;
+    public List<Fire> fires;
 
     void OnEnable()
     {
@@ -16,15 +17,9 @@ public class StationReturnTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (used)
-        {
-            return;
+        if (used) return;
 
-        }
-        if (!other.CompareTag("Fire Appliance"))
-        {
-            return;
-        }
+        if (!other.CompareTag("Fire Appliance")) return;
 
         used = true;
 
@@ -37,7 +32,14 @@ public class StationReturnTrigger : MonoBehaviour
 
         foreach (GameObject instructions in incidentInstructions)
         {
-            instructions.SetActive(false);
+            if (instructions != null)
+                instructions.SetActive(false);
+        }
+
+        foreach (Fire fire in fires)
+        {
+            if (fire != null)
+                fire.ResetFire();
         }
     }
 }
