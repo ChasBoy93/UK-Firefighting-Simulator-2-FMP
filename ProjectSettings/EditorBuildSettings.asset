@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Reversed Interactive/City Builder London/Scenes/SampleSceneDay 1.unity
     guid: e54b5acb31cf0a646970188f10e73dc2
+  - enabled: 1
+    path: Assets/Reversed Interactive/City Builder London/Scenes/Pump Tutorial.unity
+    guid: b4330f8ca985dd941bf48755e8647e11
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
