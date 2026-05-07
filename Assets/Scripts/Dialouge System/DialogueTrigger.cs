@@ -6,11 +6,6 @@ public class DialogueTrigger : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        TriggerDialogue();
-    }
-
-    void TriggerDialogue()
-    {
         FindAnyObjectByType<DialogueManager>().StartDialogue(dialogue);
     }
 

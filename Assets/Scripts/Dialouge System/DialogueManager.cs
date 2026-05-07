@@ -1,19 +1,23 @@
 using Artemis;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
-
     public TMP_Text nameText;
     public TMP_Text dialogueText;
 
     public Animator animator;
 
-    public Queue<string> sentences;
     public GameObject playerCameraStop;
+
+    public AudioSource audioSource; 
+
+    private Queue<string> sentences;
+    private Dialogue currentDialogue;
+    private int sentenceIndex = 0;
 
     void Start()
     {
@@ -22,6 +26,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        currentDialogue = dialogue;
+
         animator.SetBool("IsOpen", true);
         nameText.text = dialogue.name;
 
@@ -30,6 +36,8 @@ public class DialogueManager : MonoBehaviour
         {
             sentences.Enqueue(sentence);
         }
+
+        sentenceIndex = 0;
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -45,7 +53,28 @@ public class DialogueManager : MonoBehaviour
             EndDialogue();
             return;
         }
+
         string sentence = sentences.Dequeue();
+
+        if (audioSource != null && audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+
+        if (currentDialogue.audioClips != null &&
+            sentenceIndex < currentDialogue.audioClips.Length)
+        {
+            AudioClip clip = currentDialogue.audioClips[sentenceIndex];
+
+            if (clip != null && audioSource != null)
+            {
+                audioSource.clip = clip;
+                audioSource.Play();
+            }
+        }
+
+        sentenceIndex++;
+
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
     }
@@ -53,6 +82,7 @@ public class DialogueManager : MonoBehaviour
     IEnumerator TypeSentence(string sentence)
     {
         dialogueText.text = "";
+
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
@@ -63,9 +93,14 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         animator.SetBool("IsOpen", false);
+
+        if (audioSource != null && audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         playerCameraStop.GetComponent<FPController>().enabled = true;
     }
-
 }
