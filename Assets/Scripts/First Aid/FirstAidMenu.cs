@@ -1,6 +1,7 @@
-using UnityEngine;
+using Artemis;
 using System.Collections;
 using TMPro;
+using UnityEngine;
 
 public class FirstAidMenu : MonoBehaviour
 {
@@ -11,16 +12,26 @@ public class FirstAidMenu : MonoBehaviour
 
     private CasualtyMedicalData currentCasualty;
 
+    public GameObject playerCameraStop;
+
     public void OpenMenu(CasualtyMedicalData casualty)
     {
         currentCasualty = casualty;
 
         menuPanel.SetActive(true);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        playerCameraStop.GetComponent<FPController>().enabled = false;
     }
 
     public void CloseMenu()
     {
         menuPanel.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        playerCameraStop.GetComponent<FPController>().enabled = true;
     }
 
     public float popupDuration = 6f;
@@ -31,6 +42,7 @@ public class FirstAidMenu : MonoBehaviour
             return;
 
         inspectPopup.SetActive(true);
+        menuPanel.SetActive(false);
 
         inspectText.text =
             "<b>CASUALTY INSPECTION</b>\n\n" +
@@ -53,19 +65,15 @@ public class FirstAidMenu : MonoBehaviour
             "<b>Additional State:</b> " +
             currentCasualty.extraState;
 
-        StopAllCoroutines();
-        StartCoroutine(HidePopupAfterTime());
     }
 
-    IEnumerator HidePopupAfterTime()
-    {
-        yield return new WaitForSeconds(popupDuration);
-
-        inspectPopup.SetActive(false);
-    }
 
     public void CloseInspect()
     {
         inspectPopup.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        playerCameraStop.GetComponent<FPController>().enabled = true;
     }
 }

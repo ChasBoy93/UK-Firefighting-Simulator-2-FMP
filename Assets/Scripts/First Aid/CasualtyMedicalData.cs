@@ -31,7 +31,6 @@ public class CasualtyMedicalData : MonoBehaviour
         consciousness = RandomState(
             "Alert",
             "Confused",
-            "Semi-conscious",
             "Unresponsive"
         );
 
@@ -57,7 +56,6 @@ public class CasualtyMedicalData : MonoBehaviour
         );
 
         extraState = RandomState(
-            "Trapped",
             "Panicking",
             "Unable to walk",
             "Dizzy",

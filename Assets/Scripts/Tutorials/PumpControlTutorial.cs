@@ -16,9 +16,12 @@ public class PumpControlTutorial : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        firefighter.SetActive(false);
-        nextFirefighter.SetActive(true);
-        theTrigger.SetActive(false);
-        theNextTrigger.SetActive(true);
+        if(other.CompareTag("Player"))
+        {
+            firefighter.SetActive(false);
+            nextFirefighter.SetActive(true);
+            theTrigger.SetActive(false);
+            theNextTrigger.SetActive(true);
+        }
     }
 }

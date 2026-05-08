@@ -9,10 +9,12 @@ public class VehicleEntry : MonoBehaviour
     public GameObject liveVehicle;
     public GameObject exitTrig;
     public GameObject firefighter;
+    public GameObject entryPrompt;
 
     public MDTController mdt;
 
     public bool canEnter = false;
+    public bool canEntryPrompt = false;
 
     void Update()
     {
