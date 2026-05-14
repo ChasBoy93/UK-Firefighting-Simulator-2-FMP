@@ -5,14 +5,24 @@ using UnityEngine;
 
 public class FirstAidMenu : MonoBehaviour
 {
+    [Header("UI")]
     public GameObject menuPanel;
 
     public GameObject inspectPopup;
+
     public TMP_Text inspectText;
+
+    public TMP_Text treatmentStatusText;
+
+    [Header("Player")]
+    public GameObject playerCameraStop;
+
+    [Header("Settings")]
+    public float treatmentTime = 3f;
 
     private CasualtyMedicalData currentCasualty;
 
-    public GameObject playerCameraStop;
+    // MENU
 
     public void OpenMenu(CasualtyMedicalData casualty)
     {
@@ -22,6 +32,7 @@ public class FirstAidMenu : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
         playerCameraStop.GetComponent<FPController>().enabled = false;
     }
 
@@ -31,10 +42,11 @@ public class FirstAidMenu : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
         playerCameraStop.GetComponent<FPController>().enabled = true;
     }
 
-    public float popupDuration = 6f;
+    // INSPECT
 
     public void InspectCasualty()
     {
@@ -42,7 +54,6 @@ public class FirstAidMenu : MonoBehaviour
             return;
 
         inspectPopup.SetActive(true);
-        menuPanel.SetActive(false);
 
         inspectText.text =
             "<b>CASUALTY INSPECTION</b>\n\n" +
@@ -65,15 +76,77 @@ public class FirstAidMenu : MonoBehaviour
             "<b>Additional State:</b> " +
             currentCasualty.extraState;
 
+        StartCoroutine(HideInspectPopup());
     }
 
-
-    public void CloseInspect()
+    IEnumerator HideInspectPopup()
     {
-        inspectPopup.SetActive(false);
+        yield return new WaitForSeconds(6f);
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        playerCameraStop.GetComponent<FPController>().enabled = true;
+        inspectPopup.SetActive(false);
+    }
+
+    // CPR
+
+    public void CPRButton()
+    {
+        StartCoroutine(PerformTreatment("Performing CPR...", currentCasualty.ApplyCPR(),"Breathing restored", "CPR not required"));
+    }
+
+    // BLEEDING
+
+    public void BleedingButton()
+    {
+        StartCoroutine(PerformTreatment("Controlling bleeding...", currentCasualty.ControlBleeding(),"Bleeding controlled", "No severe bleeding found"));
+    }
+
+    // OXYGEN
+
+    public void OxygenButton()
+    {
+        StartCoroutine(PerformTreatment("Administering oxygen...", currentCasualty.GiveOxygen(), "Breathing improved", "Oxygen not required"));
+    }
+
+    // REASSURE
+
+    public void ReassureButton()
+    {
+        StartCoroutine(PerformTreatment(
+            "Reassuring casualty...", currentCasualty.ReassureCasualty(), "Casualty calmed", "Casualty already calm" ));
+    }
+
+    // IMMOBILISE
+
+    public void ImmobiliseButton()
+    {
+        StartCoroutine(PerformTreatment("Immobilising casualty...", currentCasualty.Immobilise(), "Casualty immobilised", "Immobilisation not required" ));
+    }
+
+    // UNIVERSAL TREATMENT
+
+    IEnumerator PerformTreatment(
+        string startMessage,
+        bool success,
+        string successMessage,
+        string failMessage)
+    {
+        treatmentStatusText.gameObject.SetActive(true);
+
+        treatmentStatusText.text = startMessage;
+
+        yield return new WaitForSeconds(treatmentTime);
+
+        if (success)
+        {
+            treatmentStatusText.text = successMessage;
+        }
+        else
+        {
+            treatmentStatusText.text = failMessage;
+        }
+
+        yield return new WaitForSeconds(2f);
+
+        treatmentStatusText.gameObject.SetActive(false);
     }
 }
