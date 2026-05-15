@@ -81,8 +81,13 @@ public class FirstAidMenu : MonoBehaviour
 
     IEnumerator HideInspectPopup()
     {
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(10f);
 
+        inspectPopup.SetActive(false);
+    }
+
+    public void CloseInspectPopup()
+    {
         inspectPopup.SetActive(false);
     }
 
