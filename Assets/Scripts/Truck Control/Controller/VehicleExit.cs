@@ -9,6 +9,7 @@ public class VehicleExit : MonoBehaviour
     public GameObject liveVehicle;
     public GameObject entryTrig;
     public GameObject firefighter;
+    public GameObject truckControlsUi;
 
     public MDTController mdt;
 
@@ -19,6 +20,7 @@ public class VehicleExit : MonoBehaviour
             thePlayer.SetActive(true);
             vehicleCam.SetActive(false);
             freeLookCamControl.SetActive(false);
+            truckControlsUi.SetActive(false);
 
             liveVehicle.GetComponent<TruckController>().canDrive = false;
 

@@ -297,7 +297,14 @@ PlayerSettings:
   AndroidAppBundleSizeToValidate: 150
   AndroidReportGooglePlayAppDependencies: 1
   androidSymbolsSizeThreshold: 800
-  m_BuildTargetIcons: []
+  m_BuildTargetIcons:
+  - m_BuildTarget: 
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 1d85dc4d54d6d624d85a483ccb3d7b47, type: 3}
+      m_Width: 128
+      m_Height: 128
+      m_Kind: 0
   m_BuildTargetPlatformIcons:
   - m_BuildTarget: iPhone
     m_Icons:
@@ -868,8 +875,8 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: UK Firefighting Simulator 2 FMP
-  metroPackageVersion: 
+  metroPackageName: UKFirefightingSimulator2FMP
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -877,7 +884,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: UK Firefighting Simulator 2 FMP
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: UK Firefighting Simulator 2 FMP
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0

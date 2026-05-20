@@ -10,6 +10,7 @@ public class VehicleEntry : MonoBehaviour
     public GameObject exitTrig;
     public GameObject firefighter;
     public GameObject entryPrompt;
+    public GameObject truckControlsUi;
 
     public MDTController mdt;
 
@@ -27,6 +28,8 @@ public class VehicleEntry : MonoBehaviour
                 vehicleCam.SetActive(true);
                 thePlayer.SetActive(false);
                 freeLookCamControl.SetActive(true);
+                entryPrompt.SetActive(false);
+                truckControlsUi.SetActive(true);
 
                 liveVehicle.GetComponent<TruckController>().canDrive = true;
 
@@ -52,12 +55,14 @@ public class VehicleEntry : MonoBehaviour
         if (other.tag == "Player")
         {
             canEnter = true;
+            entryPrompt.SetActive(true);
         }
     }
 
     void OnTriggerExit(Collider other)
     {
         canEnter = false;
+        entryPrompt.SetActive(false);
     }
 
     IEnumerator ExitTrigger()
