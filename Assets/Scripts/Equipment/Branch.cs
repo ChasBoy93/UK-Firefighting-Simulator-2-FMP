@@ -39,23 +39,33 @@ public class Branch : MonoBehaviour
         {
             hoseOn = false;
             theBranchParticle.SetActive(false);
-            hoseSound.Stop();
+
+            if (hoseSound.isPlaying)
+            {
+                hoseSound.Stop();
+            }
+
             return;
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
-            if (hoseOn)
+            hoseOn = true;
+            theBranchParticle.SetActive(true);
+
+            if (!hoseSound.isPlaying)
             {
-                hoseOn = false;
-                theBranchParticle.SetActive(false);
-                hoseSound.Stop();
-            }
-            else
-            {
-                hoseOn = true;
-                theBranchParticle.SetActive(true);
                 hoseSound.Play();
+            }
+        }
+        else
+        {
+            hoseOn = false;
+            theBranchParticle.SetActive(false);
+
+            if (hoseSound.isPlaying)
+            {
+                hoseSound.Stop();
             }
         }
     }

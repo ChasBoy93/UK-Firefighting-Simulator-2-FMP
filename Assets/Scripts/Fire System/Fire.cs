@@ -13,7 +13,7 @@ public class Fire : MonoBehaviour
 
     private bool isLit = true;
 
-    private void Start()
+    private void Awake()
     {
         startIntensities = new float[firePartcleSystems.Length];
 

@@ -3,22 +3,14 @@ using UnityEngine;
 public class ControlsToggle : MonoBehaviour
 {
     public GameObject truckControlsUi;
-    bool isControlsOn;
+    bool isControlsOn = false;
 
-    public void ToggleControls()
+    void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-            if(isControlsOn == false)
-            {
-                truckControlsUi.SetActive(true);
-                isControlsOn = true;
-            }
-            else if(isControlsOn == true)
-            {
-                truckControlsUi.SetActive(false);
-                isControlsOn = false;
-            }
+            isControlsOn = !isControlsOn;
+            truckControlsUi.SetActive(isControlsOn);
         }
     }
 }
